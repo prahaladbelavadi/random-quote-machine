@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+      <div class="jumbotron text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h1 class='text-primary panel-title'>
+            <b>Random Quote Machine!</b>
+        </h1>
+      </div>
+      <div class="panel-body">
+          <section class="container-fluid">
+          <p> This site will display random quotes using the
+              <a href="http://forismatic.com/" target="_blank">
+                  Forismatic API.
+              </a>
+
+          <div class="well">
+            <p class="quote-text"></p>
+            <p class="author-text"></p>
+          </div>
+          <button type="button" class="btn btn-primary" id="quote">
+              New Quote
+          </button>
+          <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large" target="_blank">
+            <button type="button" class="btn btn-primary">
+                Tweet it!
+            </button>
+          </a>
+          </section>
+      </div>
+      <div class="panel-footer">
+          <a href="https://github.com/prahaladbelavadi">
+              By Prahaladbelavadi
+          </a>
+
+      </div>
+    </div>
+</div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    // Random Quote Generator
+        var url = "https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?";
+        var getQuote = function(data) {
+        $(".quote-text").text(data.quoteText);
+        var quot = 'https://twitter.com/intent/tweet?text=' + data.quoteText + ' Author ' + data.quoteAuthor +' @prahaladbelavad';
+        if (data  .quoteAuthor === '') {
+        data.quoteAuthor = 'Unknown';
+        }
+        $(".author-text").text('Author: ' + data.quoteAuthor);
+        $(".twitter-share-button").attr("href", quot);
+        };
+        $(document).ready(function() {
+        $.getJSON(url, getQuote, 'jsonp');
+
+        });
+        $("#quote").click(function() {
+        $.getJSON(url, getQuote, 'jsonp');
+        });
+
+    </script>
+  </body>
+</html>
