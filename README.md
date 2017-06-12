@@ -2,7 +2,7 @@
 Random quote machine uses an api to display new quotes and tweet it.
 
 ##Github.io Link
-https://prahaladbelavadi.github.io/random-quote-machine/a
+https://prahaladbelavadi.github.io/random-quote-machine/
 
 THe original codepen can be found at https://codepen.io/prahaladbelavadi/pen/MoKjjN 
 
